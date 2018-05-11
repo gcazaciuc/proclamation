@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <title>Proclamation example</title>
+    <script type="text/javascript" src="bundle.js"></script>
+    <style>
+        .error {
+            border-color: red;
+        }
+    </style>
+    <script type="text/behaviour">
+        {
+            ".list": {
+                "draggable": true,
+                "iterate": "users",
+                "iterate-item-template": "#todoListItem",
+                "load": "users"
+            },
+            ".list li": {
+                "text": "name"
+            },
+            ".posts": {
+                "iterate": "posts",
+                "iterate-item-template": "#postItem",
+                "load": "posts"
+            },
+            ".posts li": {
+                "text": "title",
+                "attributes": {
+                    "id": "id",
+                    "title": "title"
+                }
+            },
+            "#addTodo": {
+                "input": {
+                    "attributes": {
+                        "value": "$todo/title"
+                    },
+                    "validations": "required"
+                }
+            },
+            ".add-btn": {
+                "events": {
+                    "!click": [{
+                        "action": "add",
+                        "params": ["posts", "$todo"]
+                    }]
+                }
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        Proclamation.install();
+    </script>
+</head>
+
+<body>
+    <div>
+        <h2>Users list</h2>
+        <ul class="list">
+        </ul>
+        <template id="todoListItem">
+            <li>Template item</li>
+        </template>
+        <h2>Post lists</h2>
+        <ul class="posts">
+        </ul>
+        <template id="postItem">
+            <li>Post</li>
+        </template>
+        <form id="addTodo">
+            <label>Add new user:</label>
+            <input type="text" name="todoName" />
+            <button class="add-btn">Add user</button>
+        </form>
+    </div>
+    </div>
+</body>
+
+</html>
